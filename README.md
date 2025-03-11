@@ -32,7 +32,7 @@ Task-Manager/
 ### **1️⃣ Clone the repository**
 
 ```sh
-git clone https://github.com/your-username/task-manager.git
+git clone https://github.com/brenowss/task-manager
 cd task-manager
 ```
 
