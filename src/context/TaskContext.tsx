@@ -31,21 +31,18 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  // Merge local storage and API tasks (avoid duplicates)
   const mergeTasks = (localTasks: Task[], apiTasks: Task[]): Task[] => {
     const localIds = new Set(localTasks.map((t) => t.id));
     const newApiTasks = apiTasks.filter((task) => !localIds.has(task.id));
     return [...localTasks, ...newApiTasks];
   };
 
-  // Add task
   const addTask = (task: Task) => {
     const updatedTasks = [task, ...tasks];
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
-  // Complete task
   const completeTask = (id: number) => {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !task.completed } : task
@@ -54,7 +51,6 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
-  // Delete task
   const deleteTask = (id: number) => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
